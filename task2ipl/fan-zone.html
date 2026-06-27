@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SRH Fan Zone</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f5f5f5;
+    margin:0;
+    padding:0;
+}
+
+h1{
+    text-align:center;
+    color:#ff6b00;
+    margin:40px 0;
+}
+
+.section{
+    width:80%;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.section h2{
+    color:#ff6b00;
+}
+
+button{
+    background:#ff6b00;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#e65c00;
+}
+
+input[type="text"]{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+ul{
+    list-style:none;
+    padding:0;
+}
+
+ul li{
+    background:#fff3e8;
+    padding:10px;
+    margin:10px 0;
+    border-left:4px solid #ff6b00;
+}
+
+.result{
+    color:green;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">SRH🦅</div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="match-fixtures.html">Match Fixtures</a></li>
+                <li><a href="points-table.html">Points Table</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="fan-zone.html">Fan Zone</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<h1>🧡 Orange Army Fan Zone 🧡</h1>
+
+<!-- Fan Poll -->
+<div class="section">
+
+    <h2>🗳️ Favorite SRH Player Poll</h2>
+
+    <input type="radio" name="player" value="Abhishek Sharma"> Abhishek Sharma<br><br>
+
+    <input type="radio" name="player" value="Heinrich Klaasen"> Heinrich Klaasen<br><br>
+
+    <input type="radio" name="player" value="Pat Cummins"> Pat Cummins<br><br>
+
+    <input type="radio" name="player" value="Ishan Kishan"> Ishan Kishan<br><br>
+
+    <button onclick="votePlayer()">Vote</button>
+
+    <p id="pollResult" class="result"></p>
+
+</div>
+
+<!-- Match Prediction -->
+<div class="section">
+
+    <h2>🏏 Match Prediction</h2>
+
+    <input type="radio" name="winner" value="SRH"> SRH<br><br>
+
+    <input type="radio" name="winner" value="Opponent"> Opponent<br><br>
+
+    <button onclick="predictMatch()">Submit Prediction</button>
+
+    <p id="predictionResult" class="result"></p>
+
+</div>
+
+<!-- Fan Wall -->
+<div class="section">
+
+    <h2>🧡 Orange Army Wall</h2>
+
+    <input type="text" id="fanMessage" placeholder="Write your message for SRH">
+
+    <button onclick="postMessage()">Post Message</button>
+
+    <ul id="messageList"></ul>
+
+</div>
+
+<!-- SRH Quiz -->
+<div class="section">
+
+    <h2>🏆 SRH Quiz</h2>
+
+    <p><strong>Who captained SRH to the IPL 2016 title?</strong></p>
+
+    <input type="radio" name="quiz" value="Kane"> Kane Williamson<br><br>
+
+    <input type="radio" name="quiz" value="Warner"> David Warner<br><br>
+
+    <input type="radio" name="quiz" value="Pat"> Pat Cummins<br><br>
+
+    <input type="radio" name="quiz" value="Bhuvi"> Bhuvneshwar Kumar<br><br>
+
+    <button onclick="checkQuiz()">Check Answer</button>
+
+    <p id="quizResult" class="result"></p>
+
+</div>
+
+<script>
+
+function votePlayer(){
+
+    let player =
+    document.querySelector('input[name="player"]:checked');
+
+    if(player){
+        document.getElementById("pollResult").innerHTML =
+        "🧡 Thanks for voting for " + player.value + "!";
+    }
+}
+
+function predictMatch(){
+
+    let team =
+    document.querySelector('input[name="winner"]:checked');
+
+    if(team){
+        document.getElementById("predictionResult").innerHTML =
+        "🏏 Your prediction: " + team.value;
+    }
+}
+
+function postMessage(){
+
+    let msg =
+    document.getElementById("fanMessage").value;
+
+    if(msg.trim() !== ""){
+
+        let li =
+        document.createElement("li");
+
+        li.textContent = msg;
+
+        document.getElementById("messageList").appendChild(li);
+
+        document.getElementById("fanMessage").value = "";
+    }
+}
+
+function checkQuiz(){
+
+    let answer =
+    document.querySelector('input[name="quiz"]:checked');
+
+    if(answer){
+
+        if(answer.value === "Warner"){
+
+            document.getElementById("quizResult").innerHTML =
+            "✅ Correct! David Warner led SRH to the 2016 IPL title.";
+
+        }else{
+
+            document.getElementById("quizResult").innerHTML =
+            "❌ Wrong Answer. Correct Answer: David Warner.";
+
+        }
+    }
+}
+
+</script>
+
+</body>
+</html>
